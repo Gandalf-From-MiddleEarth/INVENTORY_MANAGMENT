@@ -9,6 +9,7 @@ import com.gandalf.jwt.JwtService;
 import com.gandalf.repository.EmployeeRepository;
 import com.gandalf.repository.UserRepository;
 import com.gandalf.service.IAuthService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -51,23 +52,31 @@ public class AuthServiceImpl implements IAuthService {
         return null;
     }
 
+    @Transactional
     @Override
     public DtoUser register(AuthRequest request) {
         DtoUser dtoUser = new DtoUser();
         User user = new User();
         user.setUsername(request.getUsername());
+
         Optional<Employee> dbEmployee = employeeRepository.findById(Long.valueOf(request.getEmployeeId()));
-        if (dbEmployee.isPresent()){
+        if (dbEmployee.isPresent()) {
             user.setEmployee(dbEmployee.get());
-        }
-        else {
-            return null;
+        } else {
+            throw new IllegalArgumentException("Employee not found!");
         }
 
-        user.setPassword(bCryptPasswordEncoder.encode(request.getPassword()));
+        String password = request.getPassword();
+        String passwordPattern = "^[a-zA-Z0-9]{6,15}$";
+
+        if (!password.matches(passwordPattern)) {
+            throw new IllegalArgumentException("Password must be 6-15 characters long and can only contain letters/numbers.");
+        }
+
+        user.setPassword(bCryptPasswordEncoder.encode(password));
 
         User savedUser = userRepository.save(user);
-        BeanUtils.copyProperties(savedUser,dtoUser);
+        BeanUtils.copyProperties(savedUser, dtoUser);
         return dtoUser;
     }
 }
