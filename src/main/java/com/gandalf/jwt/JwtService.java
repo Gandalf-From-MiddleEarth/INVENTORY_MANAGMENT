@@ -10,12 +10,14 @@ import org.springframework.stereotype.Component;
 
 import java.security.Key;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Function;
 
 @Component
 public class JwtService {
 
-    public static final String JWT_SECRET = "QVVUSEVOVElDQVRJT04gVE9LRU4gR0VORVJBVEUg";
+    public static final String JWT_SECRET = "c+29Hgl1sP59dBfx5hmcJ/9Ad/0FOWeRFLco54GgZq0===";
 
     public String generateToken(UserDetails userDetails) {
         return Jwts.builder().setSubject(userDetails.getUsername()).setIssuedAt(new Date()).setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 2)).signWith(getKey(),  SignatureAlgorithm.HS256).compact();

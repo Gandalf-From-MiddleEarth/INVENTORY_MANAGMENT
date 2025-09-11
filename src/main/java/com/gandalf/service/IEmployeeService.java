@@ -5,7 +5,7 @@ import com.gandalf.dto.DtoEmployeeManagementIU;
 
 import java.util.List;
 
-public interface IEmployeeManagementService {
+public interface IEmployeeService {
     public DtoEmployeeManagement saveEmployee(DtoEmployeeManagementIU saveEmployee);
     public List<DtoEmployeeManagement> getAllEmployees();
     public DtoEmployeeManagement getEmployeeById(Long id);

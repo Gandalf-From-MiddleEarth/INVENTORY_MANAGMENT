@@ -6,7 +6,7 @@ import com.gandalf.entities.Inventory;
 
 import java.util.List;
 
-public interface IInventoryManagementService {
+public interface IInventoryService {
     public DtoInventoryManagement saveInventory(DtoInventoryManagementIU saveInventory);
     public List<DtoInventoryManagement> getAllInventory();
     public  DtoInventoryManagement getInventoryById(Integer id);

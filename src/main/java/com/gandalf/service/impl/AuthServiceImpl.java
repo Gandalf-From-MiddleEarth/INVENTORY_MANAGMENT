@@ -1,10 +1,12 @@
 package com.gandalf.service.impl;
 
 import com.gandalf.dto.DtoUser;
+import com.gandalf.entities.Employee;
 import com.gandalf.entities.User;
 import com.gandalf.jwt.AuthRequest;
 import com.gandalf.jwt.AuthResponse;
 import com.gandalf.jwt.JwtService;
+import com.gandalf.repository.EmployeeRepository;
 import com.gandalf.repository.UserRepository;
 import com.gandalf.service.IAuthService;
 import org.springframework.beans.BeanUtils;
@@ -28,6 +30,8 @@ public class AuthServiceImpl implements IAuthService {
     @Autowired
     private AuthenticationProvider  authenticationProvider;
 
+    @Autowired
+    private EmployeeRepository employeeRepository;
 
     @Autowired
     private JwtService jwtService;
@@ -39,8 +43,8 @@ public class AuthServiceImpl implements IAuthService {
             authenticationProvider.authenticate(auth);
             Optional<User> user = userRepository.findByUsername(request.getUsername());
             String token = jwtService.generateToken(user.get());
-
             return new AuthResponse(token);
+
         } catch (Exception e) {
             System.out.println("Authentication Failed : ");
         }
@@ -52,6 +56,14 @@ public class AuthServiceImpl implements IAuthService {
         DtoUser dtoUser = new DtoUser();
         User user = new User();
         user.setUsername(request.getUsername());
+        Optional<Employee> dbEmployee = employeeRepository.findById(Long.valueOf(request.getEmployeeId()));
+        if (dbEmployee.isPresent()){
+            user.setEmployee(dbEmployee.get());
+        }
+        else {
+            return null;
+        }
+
         user.setPassword(bCryptPasswordEncoder.encode(request.getPassword()));
 
         User savedUser = userRepository.save(user);

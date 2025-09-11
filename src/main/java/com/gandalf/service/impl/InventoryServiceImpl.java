@@ -3,8 +3,8 @@ package com.gandalf.service.impl;
 import com.gandalf.dto.DtoInventoryManagement;
 import com.gandalf.dto.DtoInventoryManagementIU;
 import com.gandalf.entities.Inventory;
-import com.gandalf.repository.InventoryManagementRepository;
-import com.gandalf.service.IInventoryManagementService;
+import com.gandalf.repository.InventoryRepository;
+import com.gandalf.service.IInventoryService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,10 +14,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class InventoryManagementServiceImpl implements IInventoryManagementService {
+public class InventoryServiceImpl implements IInventoryService {
 
     @Autowired
-    private InventoryManagementRepository inventoryRepository;
+    private InventoryRepository inventoryRepository;
 
     @Override
     public DtoInventoryManagement saveInventory(DtoInventoryManagementIU saveInventory) {

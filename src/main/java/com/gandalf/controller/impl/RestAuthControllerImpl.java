@@ -1,6 +1,7 @@
 package com.gandalf.controller.impl;
 
 import com.gandalf.controller.IRestAuthController;
+import com.gandalf.dto.DtoEmployeeManagementIU;
 import com.gandalf.dto.DtoUser;
 import com.gandalf.jwt.AuthRequest;
 import com.gandalf.jwt.AuthResponse;
@@ -18,7 +19,7 @@ public class RestAuthControllerImpl implements IRestAuthController {
     private IAuthService authService;
 
     @Override
-    @PostMapping("register")
+    @PostMapping("/register")
     public DtoUser register(@Valid @RequestBody AuthRequest request) {
         return authService.register(request);
     }

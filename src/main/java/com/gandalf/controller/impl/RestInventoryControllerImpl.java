@@ -3,7 +3,7 @@ package com.gandalf.controller.impl;
 import com.gandalf.controller.IRestInventoryController;
 import com.gandalf.dto.DtoInventoryManagement;
 import com.gandalf.dto.DtoInventoryManagementIU;
-import com.gandalf.service.IInventoryManagementService;
+import com.gandalf.service.IInventoryService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +15,7 @@ import java.util.List;
 public class RestInventoryControllerImpl implements IRestInventoryController {
 
     @Autowired
-    private IInventoryManagementService inventoryManagementService;
+    private IInventoryService inventoryManagementService;
 
     @PostMapping(path = "/save")
     @Override

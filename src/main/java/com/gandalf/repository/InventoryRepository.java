@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface InventoryManagementRepository extends JpaRepository<Inventory,Integer> {
+public interface InventoryRepository extends JpaRepository<Inventory,Integer> {
 
     @Query(nativeQuery = true, value = "SELECT * FROM hrapp.inventory WHERE status != 'ASSIGNED'" )
     List<Inventory> notAssigned();

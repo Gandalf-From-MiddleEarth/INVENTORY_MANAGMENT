@@ -7,8 +7,8 @@ import com.gandalf.entities.Inventory;
 import com.gandalf.entities.InventoryAssignment;
 import com.gandalf.enums.InventoryStatus;
 import com.gandalf.repository.AssignmentRepository;
-import com.gandalf.repository.EmployeeManagementRepository;
-import com.gandalf.repository.InventoryManagementRepository;
+import com.gandalf.repository.EmployeeRepository;
+import com.gandalf.repository.InventoryRepository;
 import com.gandalf.service.IAssignmentService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +23,9 @@ public class AssignmentServiceImpl implements IAssignmentService {
     @Autowired
     private AssignmentRepository assignmentRepository;
     @Autowired
-    private EmployeeManagementRepository employeeRepository;
+    private EmployeeRepository employeeRepository;
     @Autowired
-    private InventoryManagementRepository inventoryRepository;
+    private InventoryRepository inventoryRepository;
 
     @Override
     public DtoAssignment createAssignment(DtoAssignmentIU assignment) {

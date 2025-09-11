@@ -3,7 +3,7 @@ package com.gandalf.controller.impl;
 import com.gandalf.controller.IRestEmployeeController;
 import com.gandalf.dto.DtoEmployeeManagement;
 import com.gandalf.dto.DtoEmployeeManagementIU;
-import com.gandalf.service.impl.EmployeeManagementServiceImpl;
+import com.gandalf.service.impl.EmployeeServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +15,7 @@ import java.util.List;
 public class RestEmployeeController implements IRestEmployeeController {
 
     @Autowired
-    EmployeeManagementServiceImpl userManagementServiceImpl;
+    EmployeeServiceImpl userManagementServiceImpl;
 
     @PostMapping(path = "/save")
     @Override
