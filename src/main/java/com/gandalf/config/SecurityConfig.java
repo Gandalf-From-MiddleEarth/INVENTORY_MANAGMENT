@@ -15,8 +15,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SecurityConfig {
 
-    public  static  final String AUTHENTICATE = "/authenticate";
-    public   static  final String REGISTER = "/register";
+    public static final String AUTHENTICATE = "/authenticate";
+    public static final String REGISTER = "/register";
 
     @Autowired
     private AuthenticationProvider authenticationProvider;
@@ -25,17 +25,20 @@ public class SecurityConfig {
     private JwtAuthenticationFilter jwtAuthenticationFilter;
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http)  throws Exception {
-        http.csrf().disable()
-                .authorizeHttpRequests(request-> request
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+                .csrf().disable()
+                .cors()
+                .and()
+                .authorizeHttpRequests(request -> request
                         .requestMatchers(AUTHENTICATE, REGISTER)
                         .permitAll()
                         .anyRequest()
-                        .authenticated()).sessionManagement(session-> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                        .authenticated())
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+
         return http.build();
     }
-
-
 }
