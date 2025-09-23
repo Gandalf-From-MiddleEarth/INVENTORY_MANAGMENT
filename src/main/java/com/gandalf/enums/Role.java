@@ -1,5 +1,6 @@
 package com.gandalf.enums;
 
+
 public enum Role {
     ADMIN("Yönetici"),
     HR("İnsan Kaynakları"),

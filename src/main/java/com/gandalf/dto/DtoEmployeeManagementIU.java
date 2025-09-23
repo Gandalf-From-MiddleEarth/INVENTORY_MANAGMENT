@@ -25,14 +25,21 @@ public class DtoEmployeeManagementIU {
     @NotEmpty(message = "TCKN boş olamaz")
     @Pattern(regexp = "^[0-9]{11}$", message = "TCKN 11 haneli sayısal bir değer olmalıdır")
     private String tckn;
+    @NotEmpty
     private LocalDate birthDate;
-
+    @NotEmpty
     private String gender;
+    @NotEmpty
     private MaritalStatus maritalStatus;
+    @NotEmpty
     private GraduationStatus graduationStatus;
+    @NotEmpty
     private Boolean isActive;
     private String profilePhoto;
+    @NotEmpty
     private Department department;
+    @NotEmpty
     private Position position;
+    @NotEmpty
     private Role role;
 }

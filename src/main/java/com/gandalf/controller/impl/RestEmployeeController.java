@@ -41,7 +41,9 @@ public class RestEmployeeController implements IRestEmployeeController {
         return userManagementServiceImpl.employeeUpdate(id, updateEmployee);
     }
 
+    @DeleteMapping("/delete/{id}")
     @Override
-    public void deleteEmployee(Long id) {
+    public void deleteEmployee(@PathVariable(name = "id") Long id) {
+        userManagementServiceImpl.deleteEmployee(id);
     }
 }

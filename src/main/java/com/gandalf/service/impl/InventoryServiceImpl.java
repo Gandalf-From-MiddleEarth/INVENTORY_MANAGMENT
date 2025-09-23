@@ -66,15 +66,5 @@ public class InventoryServiceImpl implements IInventoryService {
         return null;
     }
 
-    @Override
-    public DtoInventoryManagement updateInventory(DtoInventoryManagementIU updateInventory, Integer id) {
-
-        Optional<Inventory> optional = inventoryRepository.findById(id);
-        if (optional.isPresent()) {
-            Inventory inventory = optional.get();
-
-        }
-        return null;
-    }
 
 }

@@ -2,9 +2,7 @@ package com.gandalf.service.impl;
 
 import com.gandalf.dto.DtoEmployeeManagement;
 import com.gandalf.dto.DtoEmployeeManagementIU;
-import com.gandalf.dto.DtoUser;
 import com.gandalf.entities.Employee;
-import com.gandalf.jwt.AuthRequest;
 import com.gandalf.repository.EmployeeRepository;
 import com.gandalf.service.IEmployeeService;
 import org.springframework.beans.BeanUtils;
@@ -29,8 +27,8 @@ public class EmployeeServiceImpl implements IEmployeeService {
         Employee dbEmployee = employeeManagementRepository.save(employee);
         BeanUtils.copyProperties(dbEmployee, response);
         return response;
-
     }
+
     @Override
     public List<DtoEmployeeManagement> getAllEmployees() {
         List<DtoEmployeeManagement> response = new ArrayList<>();

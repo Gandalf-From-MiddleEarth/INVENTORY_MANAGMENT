@@ -1,6 +1,5 @@
 package com.gandalf.jwt;
 
-import com.gandalf.entities.Employee;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -11,5 +11,4 @@ public interface IInventoryService {
     public List<DtoInventoryManagement> getAllInventory();
     public  DtoInventoryManagement getInventoryById(Integer id);
     public Inventory updateInventory (DtoInventoryManagement updateInventory, Integer id);
-    DtoInventoryManagement updateInventory(DtoInventoryManagementIU updateInventory, Integer id);
 }
