@@ -55,17 +55,19 @@ public class AuthServiceImpl implements IAuthService {
     @Transactional
     @Override
     public DtoUser register(AuthRequest request) {
+
+        Integer userId = request.getEmployeeId();
         DtoUser dtoUser = new DtoUser();
         User user = new User();
         user.setUsername(request.getUsername());
 
-        Optional<Employee> dbEmployee = employeeRepository.findById(Long.valueOf(request.getEmployeeId()));
+        Optional<Employee> dbEmployee = employeeRepository.findById(Long.valueOf(userId));
         if (dbEmployee.isPresent()) {
             user.setEmployee(dbEmployee.get());
+            user.setRole(dbEmployee.get().getRole());
         } else {
             throw new IllegalArgumentException("Employee not found!");
         }
-
         String password = request.getPassword();
         String passwordPattern = "^[a-zA-Z0-9]{6,15}$";
 

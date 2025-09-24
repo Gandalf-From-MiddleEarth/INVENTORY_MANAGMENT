@@ -6,6 +6,7 @@ import com.gandalf.enums.InventoryType;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,6 +34,7 @@ public class DtoInventoryManagementIU {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate entryDate;
 
+    @NotNull(message = "Envanter Tipi boş geçilemez.")
     @Enumerated(EnumType.STRING)
     private InventoryType type;
 

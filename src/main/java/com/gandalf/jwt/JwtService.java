@@ -1,16 +1,22 @@
 package com.gandalf.jwt;
 
+import com.gandalf.entities.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.BeanUtils;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.security.Key;
 import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Component
 public class JwtService {
@@ -19,9 +25,16 @@ public class JwtService {
 
     public String generateToken(UserDetails userDetails) {
 
+        User user = (User) userDetails;
+
+        List<String> roles = user.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .collect(Collectors.toList());
+
         return Jwts.builder()
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date())
+                .claim("roles", roles)
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 2))
                 .signWith(getKey(), SignatureAlgorithm.HS256)
                 .compact();
