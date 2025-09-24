@@ -1,12 +1,11 @@
 package com.gandalf.dto;
 
-import com.gandalf.enums.Department;
-import com.gandalf.enums.GraduationStatus;
-import com.gandalf.enums.MaritalStatus;
-import com.gandalf.enums.Position;
+import com.gandalf.enums.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -27,4 +26,8 @@ public class DtoEmployeeManagement {
     private Department department;
 
     private Position position;
+
+    private Gender gender;
+
+    private Date birthDate;
 }
