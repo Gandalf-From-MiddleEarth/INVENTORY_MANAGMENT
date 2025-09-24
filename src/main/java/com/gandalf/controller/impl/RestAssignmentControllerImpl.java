@@ -25,4 +25,10 @@ public class RestAssignmentControllerImpl implements IRestAssignmentController {
     public DtoAssignment receiveAssignment(@RequestBody DtoAssignmentIU receiveAssignment,@PathVariable(name = "id") Long id) {
         return assignmentService.receiveAssignment(receiveAssignment, id);
     }
+
+    @GetMapping("/list")
+    @Override
+    public DtoAssignment getAllAssignments() {
+        return assignmentService.getAllAssignments();
+    }
 }
