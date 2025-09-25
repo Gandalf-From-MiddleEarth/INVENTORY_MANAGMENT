@@ -24,17 +24,21 @@ public class JwtService {
     public static final String JWT_SECRET = "c+29Hgl1sP59dBfx5hmcJ/9Ad/0FOWeRFLco54GgZq0===";
 
     public String generateToken(UserDetails userDetails) {
-
         User user = (User) userDetails;
 
         List<String> roles = user.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
 
+
+        if (user.getRole() != null) {
+            roles.add(user.getRole().name()); // eğer enum ise name() kullan
+        }
+
         return Jwts.builder()
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date())
-                .claim("roles", roles)
+                .claim("roles", roles)  // hem authorities hem de entity’deki role burada
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 2))
                 .signWith(getKey(), SignatureAlgorithm.HS256)
                 .compact();

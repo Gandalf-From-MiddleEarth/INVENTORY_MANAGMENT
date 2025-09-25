@@ -60,15 +60,24 @@ public class AuthServiceImpl implements IAuthService {
 
     @Override
     public DtoUser register(AuthRequest request) {
-        DtoUser dtoUser = new DtoUser();
-        User user = new User();
-        user.setUsername(request.getUsername());
-        user.setPassword(bCryptPasswordEncoder.encode(request.getPassword()));
-        /*Employee employee = employeeRepository.findById(request.getEmployeeId());
-        user.setRole(request.getEmployeeId());*/
+        try {
+            Optional<Employee> employee = employeeRepository.findById(request.getEmployeeId());
+            if (employee.isPresent()) {
+                User user = new User();
+                user.setEmployee(employee.get());
+                user.setRole(employee.get().getRole());
+                DtoUser dtoUser = new DtoUser();
+                user.setUsername(request.getUsername());
+                user.setPassword(bCryptPasswordEncoder.encode(request.getPassword()));
+                User savedUser = userRepository.save(user);
+                BeanUtils.copyProperties(savedUser,dtoUser);
+                return dtoUser;
+            }
 
-        User savedUser = userRepository.save(user);
-        BeanUtils.copyProperties(savedUser,dtoUser);
-        return dtoUser;
+        }
+        catch (Exception e) {
+            throw new RuntimeException("Invalid credentials");
+        }
+        return null;
     }
 }

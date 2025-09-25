@@ -26,7 +26,7 @@ import java.util.List;
         private String username;
         @Column(nullable = false)
         private String password;
-        @Enumerated
+        @Enumerated(EnumType.STRING)
         private Role role;
         @OneToOne
         private Employee employee;
