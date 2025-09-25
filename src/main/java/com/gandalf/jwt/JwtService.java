@@ -32,13 +32,13 @@ public class JwtService {
 
 
         if (user.getRole() != null) {
-            roles.add(user.getRole().name()); // eğer enum ise name() kullan
+            roles.add(user.getRole().name());
         }
 
         return Jwts.builder()
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date())
-                .claim("roles", roles)  // hem authorities hem de entity’deki role burada
+                .claim("roles", roles)
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 2))
                 .signWith(getKey(), SignatureAlgorithm.HS256)
                 .compact();
