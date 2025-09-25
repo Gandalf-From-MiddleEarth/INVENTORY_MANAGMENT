@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -31,7 +32,7 @@ public class Employee {
     private String tckn;
 
     @Column(nullable = false)
-    private LocalDate birthDate;
+    private Date birthDate;
 
     @Enumerated(EnumType.STRING)
     private Gender gender;
