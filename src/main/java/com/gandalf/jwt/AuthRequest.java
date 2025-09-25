@@ -12,9 +12,9 @@ import lombok.Setter;
 @NoArgsConstructor
 public class AuthRequest {
 
-    @NotEmpty
+    @NotEmpty(message = "Kullanıcı adı boş geçilemez.")
     private String username;
-    @NotEmpty
+    @NotEmpty(message = "Şifre boş geçilemez.")
     private String password;
 
     private Integer employeeId;

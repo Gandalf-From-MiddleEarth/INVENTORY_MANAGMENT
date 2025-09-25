@@ -16,6 +16,7 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import java.util.Optional;
 
@@ -40,16 +41,21 @@ public class AuthServiceImpl implements IAuthService {
     @Override
     public AuthResponse authenticate(AuthRequest request) {
         try {
-            UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword());
+            UsernamePasswordAuthenticationToken auth =
+                    new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword());
             authenticationProvider.authenticate(auth);
+
             Optional<User> user = userRepository.findByUsername(request.getUsername());
+            if (user.isEmpty()) {
+                throw new RuntimeException("User not found");
+            }
             String token = jwtService.generateToken(user.get());
             return new AuthResponse(token);
 
         } catch (Exception e) {
-            System.out.println("Authentication Failed : ");
+            System.out.println("Authentication Failed: " + e.getMessage());
+            throw new RuntimeException("Invalid credentials");
         }
-        return null;
     }
 
     @Transactional
