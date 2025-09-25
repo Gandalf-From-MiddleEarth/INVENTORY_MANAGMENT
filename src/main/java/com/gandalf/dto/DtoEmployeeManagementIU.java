@@ -30,10 +30,10 @@ public class DtoEmployeeManagementIU {
     private String tckn;
 
     @NotNull(message = "Doğum tarihi boş geçilemez.")
-    private Date birthDate;
+    private LocalDate birthDate;
 
-    @NotEmpty(message = "Cinsiyet alanı boş bırakılamaz.")
-    private String gender;
+    @NotNull(message = "Cinsiyet alanı boş bırakılamaz.")
+    private Gender gender;
 
     @NotNull(message = "Çalışanın medeni hali boş geçilemez.")
     private MaritalStatus maritalStatus;

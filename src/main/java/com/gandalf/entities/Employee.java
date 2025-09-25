@@ -32,7 +32,7 @@ public class Employee {
     private String tckn;
 
     @Column(nullable = false)
-    private Date birthDate;
+    private LocalDate birthDate;
 
     @Enumerated(EnumType.STRING)
     private Gender gender;

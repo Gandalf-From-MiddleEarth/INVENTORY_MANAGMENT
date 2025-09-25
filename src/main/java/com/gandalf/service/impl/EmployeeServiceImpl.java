@@ -24,7 +24,17 @@ public class EmployeeServiceImpl implements IEmployeeService {
     public DtoEmployeeManagement saveEmployee(DtoEmployeeManagementIU saveEmployee) {
         DtoEmployeeManagement response = new DtoEmployeeManagement();
         Employee employee = new Employee();
-        BeanUtils.copyProperties(saveEmployee, employee);
+        employee.setFirstName(saveEmployee.getFirstName());
+        employee.setLastName(saveEmployee.getLastName());
+        employee.setTckn(saveEmployee.getTckn());
+        employee.setBirthDate(saveEmployee.getBirthDate());
+        employee.setGender(saveEmployee.getGender());
+        employee.setMaritalStatus(saveEmployee.getMaritalStatus());
+        employee.setGraduationStatus(saveEmployee.getGraduationStatus());
+        employee.setIsActive(saveEmployee.getIsActive());
+        employee.setDepartment(saveEmployee.getDepartment());
+        employee.setPosition(saveEmployee.getPosition());
+        employee.setRole(saveEmployee.getRole());
         Employee dbEmployee = employeeManagementRepository.save(employee);
         BeanUtils.copyProperties(dbEmployee, response);
         return response;

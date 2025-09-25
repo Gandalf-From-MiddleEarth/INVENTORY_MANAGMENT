@@ -15,24 +15,24 @@ import java.util.List;
 public class RestInventoryControllerImpl implements IRestInventoryController {
 
     @Autowired
-    private IInventoryService inventoryManagementService;
+    private IInventoryService inventoryService;
 
     @PostMapping(path = "/save")
     @Override
     public DtoInventoryManagement saveInventory(@RequestBody @Valid DtoInventoryManagementIU saveItem) {
-        return inventoryManagementService.saveInventory(saveItem);
+        return inventoryService.saveInventory(saveItem);
     }
 
     @GetMapping(path = "/list")
     @Override
     public List<DtoInventoryManagement> getAllInventory() {
-        return  inventoryManagementService.getAllInventory();
+        return  inventoryService.getAllInventory();
     }
 
     @GetMapping(path = "/list/{id}")
     @Override
     public DtoInventoryManagement getInventoryById(@PathVariable(name = "id") Integer id) {
-        return null;
+        return inventoryService.getInventoryById(id);
     }
 
     @Override
