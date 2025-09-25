@@ -35,4 +35,6 @@ public class DtoEmployeeManagement {
     private Gender gender;
 
     private LocalDate birthDate;
+
+    private Role  role;
 }
