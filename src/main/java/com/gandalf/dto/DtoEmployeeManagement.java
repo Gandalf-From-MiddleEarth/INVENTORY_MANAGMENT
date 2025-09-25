@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -23,6 +24,8 @@ public class DtoEmployeeManagement {
 
     private GraduationStatus graduationStatus;
 
+    private String tckn;
+
     private Boolean isActive;
 
     private Department department;
@@ -31,5 +34,5 @@ public class DtoEmployeeManagement {
 
     private Gender gender;
 
-    private Date birthDate;
+    private LocalDate birthDate;
 }
