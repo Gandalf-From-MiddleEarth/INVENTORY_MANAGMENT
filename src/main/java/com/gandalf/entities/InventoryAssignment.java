@@ -17,7 +17,7 @@ import java.time.LocalDate;
 public class InventoryAssignment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     @Column(name = "assignment_date")
     private LocalDate assignmentDate;
     @Column(name = "return_date")

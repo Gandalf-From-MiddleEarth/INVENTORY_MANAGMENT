@@ -5,6 +5,6 @@ import com.gandalf.dto.DtoAssignmentIU;
 
 public interface IRestAssignmentController {
     public DtoAssignment createAssignment(DtoAssignmentIU assignment);
-    public DtoAssignment receiveAssignment(DtoAssignmentIU receiveAssignment, Long id);
+    public DtoAssignment receiveAssignment(DtoAssignmentIU receiveAssignment, Integer id);
     public DtoAssignment getAllAssignments();
 }

@@ -31,19 +31,19 @@ public class RestEmployeeController implements IRestEmployeeController {
 
     @GetMapping(path = "/list/{id}")
     @Override
-    public DtoEmployeeManagement getEmployeeById(@PathVariable(name = "id") Long id) {
+    public DtoEmployeeManagement getEmployeeById(@PathVariable(name = "id") Integer id) {
         return userManagementServiceImpl.getEmployeeById(id);
     }
 
     @PutMapping(path = "/update/{id}")
     @Override
-    public DtoEmployeeManagement employeeUpdate(@PathVariable(name = "id") Long id, @RequestBody DtoEmployeeManagementIU updateEmployee) {
+    public DtoEmployeeManagement employeeUpdate(@PathVariable(name = "id") Integer id, @RequestBody DtoEmployeeManagementIU updateEmployee) {
         return userManagementServiceImpl.employeeUpdate(id, updateEmployee);
     }
 
     @DeleteMapping("/delete/{id}")
     @Override
-    public void deleteEmployee(@PathVariable(name = "id") Long id) {
+    public void deleteEmployee(@PathVariable(name = "id") Integer id) {
         userManagementServiceImpl.deleteEmployee(id);
     }
 }

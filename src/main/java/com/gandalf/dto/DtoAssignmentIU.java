@@ -17,11 +17,11 @@ public class DtoAssignmentIU {
 
     private LocalDate returnDate;
 
-    private Long employeeId;
+    private Integer employeeId;
 
-    private Long inventoryId;
+    private Integer inventoryId;
 
-    private Long assigner;
+    private Integer assigner;
 
-    private Long receiver;
+    private Integer receiver;
 }

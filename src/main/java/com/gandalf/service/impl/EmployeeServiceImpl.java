@@ -43,7 +43,7 @@ public class EmployeeServiceImpl implements IEmployeeService {
     }
 
     @Override
-    public DtoEmployeeManagement getEmployeeById(Long employeeId) {
+    public DtoEmployeeManagement getEmployeeById(Integer employeeId) {
         DtoEmployeeManagement response=null;
         Optional<Employee> opt= employeeManagementRepository.findById(employeeId);
         if (opt.isPresent()) {
@@ -54,7 +54,7 @@ public class EmployeeServiceImpl implements IEmployeeService {
     }
 
     @Override
-    public DtoEmployeeManagement employeeUpdate( Long id,DtoEmployeeManagementIU updateEmployee) {
+    public DtoEmployeeManagement employeeUpdate( Integer id,DtoEmployeeManagementIU updateEmployee) {
         Employee employee = new Employee();
         Optional<Employee> optional =  employeeManagementRepository.findById(id);
         if (optional.isPresent()) {
@@ -71,7 +71,7 @@ public class EmployeeServiceImpl implements IEmployeeService {
     }
 
     @Override
-    public void deleteEmployee(Long id) {
+    public void deleteEmployee(Integer id) {
         employeeManagementRepository.deleteById(id);
     }
 }

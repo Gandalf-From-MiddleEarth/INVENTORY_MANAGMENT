@@ -74,7 +74,7 @@ public class AssignmentServiceImpl implements IAssignmentService {
     }
 
     @Override
-    public DtoAssignment receiveAssignment(DtoAssignmentIU receiveAssignment, Long id) {
+    public DtoAssignment receiveAssignment(DtoAssignmentIU receiveAssignment, Integer id) {
         InventoryAssignment assignment = assignmentRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Assignment not found"));
 

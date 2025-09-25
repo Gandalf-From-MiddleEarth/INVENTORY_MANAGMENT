@@ -22,7 +22,7 @@ public class RestAssignmentControllerImpl implements IRestAssignmentController {
 
     @PutMapping(path = "/receive/{id}")
     @Override
-    public DtoAssignment receiveAssignment(@RequestBody DtoAssignmentIU receiveAssignment,@PathVariable(name = "id") Long id) {
+    public DtoAssignment receiveAssignment(@RequestBody DtoAssignmentIU receiveAssignment,@PathVariable(name = "id") Integer id) {
         return assignmentService.receiveAssignment(receiveAssignment, id);
     }
 

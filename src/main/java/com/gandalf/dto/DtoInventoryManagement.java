@@ -15,6 +15,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class DtoInventoryManagement {
 
+    private Integer id;
     private String serialNumber;
     private String brand;
     private String model;

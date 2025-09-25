@@ -13,6 +13,8 @@ import java.util.Date;
 public class DtoEmployeeManagement {
 
 
+    private Integer id;
+
     private String firstName;
 
     private String lastName;

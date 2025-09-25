@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class DtoAssignment {
 
-    private Long id;
+    private Integer id;
 
     private LocalDate assignmentDate;
 
