@@ -41,4 +41,10 @@ public class RestInventoryControllerImpl implements IRestInventoryController {
         return inventoryService.updateInventory(updateInventory, id);
     }
 
+    @DeleteMapping("/delete/{id}")
+    @Override
+    public boolean deleteInventory(@PathVariable(name = "id") Integer id){
+        return inventoryService.deleteInventory(id);
+    }
+
 }

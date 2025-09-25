@@ -11,4 +11,5 @@ public interface IRestInventoryController {
     public List<DtoInventoryManagement> getAllInventory();
     public  DtoInventoryManagement getInventoryById(Integer id);
     public DtoInventoryManagement updateInventory (Integer id, DtoInventoryManagementIU updateInventory);
+    public boolean deleteInventory(Integer id);
 }

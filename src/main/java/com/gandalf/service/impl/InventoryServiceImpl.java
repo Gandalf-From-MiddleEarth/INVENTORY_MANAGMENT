@@ -68,4 +68,14 @@ public class InventoryServiceImpl implements IInventoryService {
         return null;
     }
 
+    @Override
+    public boolean deleteInventory(Integer id) {
+        Optional<Inventory> optional = inventoryRepository.findById(id);
+        if (optional.isPresent()) {
+            inventoryRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+
 }
