@@ -21,21 +21,26 @@ public class Inventory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(nullable = false, unique = true)
     private String serialNumber;
-    @JoinColumn(nullable = false)
-    @ManyToOne
-    private Brand brand;
-    @JoinColumn(nullable = false)
-    @ManyToOne
-    private Model model;
+
+    @Column(name = "brand")
+    private String brand;
+
+    @Column(name = "model")
+    private String model;
+
     @Column(nullable = false)
     private LocalDate entryDate;
+
     @Enumerated(EnumType.STRING)
     private InventoryType type;
+
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private InventoryStatus status;
+
     @OneToMany(mappedBy = "inventory")
     private List<InventoryAssignment> assignments;
 }
