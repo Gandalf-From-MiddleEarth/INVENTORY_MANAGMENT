@@ -5,6 +5,7 @@ import com.gandalf.dto.DtoInventoryManagementIU;
 import com.gandalf.entities.Inventory;
 import com.gandalf.repository.InventoryRepository;
 import com.gandalf.service.IInventoryService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,18 +54,18 @@ public class InventoryServiceImpl implements IInventoryService {
     }
 
     @Override
-    public Inventory updateInventory(DtoInventoryManagement updateInventory, Integer id) {
-        Inventory inventory = new Inventory();
-        Optional<Inventory> optional =  inventoryRepository.findById(id);
+    public DtoInventoryManagement updateInventory(DtoInventoryManagementIU updateInventory, Integer id) {
+        Optional<Inventory> optional = inventoryRepository.findById(id);
         if (optional.isPresent()) {
-            inventory = optional.get();
+            Inventory inventory = optional.get();
             BeanUtils.copyProperties(updateInventory, inventory);
-            Inventory dbInventory = new Inventory();
-            BeanUtils.copyProperties(dbInventory, inventory);
-            return inventoryRepository.save(inventory);
+            Inventory savedInventory = inventoryRepository.save(inventory);
+            DtoInventoryManagement response = new DtoInventoryManagement();
+            BeanUtils.copyProperties(savedInventory, response);
+
+            return response;
         }
         return null;
     }
-
 
 }
