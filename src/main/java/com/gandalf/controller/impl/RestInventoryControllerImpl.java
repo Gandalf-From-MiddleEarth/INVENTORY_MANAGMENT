@@ -35,8 +35,9 @@ public class RestInventoryControllerImpl implements IRestInventoryController {
         return inventoryService.getInventoryById(id);
     }
 
+    @PutMapping("/update/{id}")
     @Override
-    public DtoInventoryManagement updateInventory(DtoInventoryManagement updateInventory, Integer id) {
+    public DtoInventoryManagement updateInventory(@PathVariable(name = "id")  Integer id, DtoInventoryManagement updateInventory) {
         return null;
     }
 }

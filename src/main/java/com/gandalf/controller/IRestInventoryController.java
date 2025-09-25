@@ -10,5 +10,5 @@ public interface IRestInventoryController {
     public DtoInventoryManagement saveInventory(DtoInventoryManagementIU saveItem);
     public List<DtoInventoryManagement> getAllInventory();
     public  DtoInventoryManagement getInventoryById(Integer id);
-    public DtoInventoryManagement updateInventory (DtoInventoryManagement updateInventory, Integer id);
+    public DtoInventoryManagement updateInventory (Integer id, DtoInventoryManagement updateInventory);
 }
