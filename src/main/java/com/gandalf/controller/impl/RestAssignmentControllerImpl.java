@@ -2,7 +2,8 @@ package com.gandalf.controller.impl;
 
 import com.gandalf.controller.IRestAssignmentController;
 import com.gandalf.dto.DtoAssignment;
-import com.gandalf.dto.DtoAssignmentIU;
+import com.gandalf.dto.DtoAssignmentCreateIU;
+import com.gandalf.dto.DtoAssignmentReceiveIU;
 import com.gandalf.service.IAssignmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,13 +17,13 @@ public class RestAssignmentControllerImpl implements IRestAssignmentController {
 
     @PostMapping(path = "/create")
     @Override
-    public DtoAssignment createAssignment(@RequestBody DtoAssignmentIU assignment) {
+    public DtoAssignment createAssignment(@RequestBody DtoAssignmentCreateIU assignment) {
         return assignmentService.createAssignment(assignment);
     }
 
     @PutMapping(path = "/receive/{id}")
     @Override
-    public DtoAssignment receiveAssignment(@RequestBody DtoAssignmentIU receiveAssignment,@PathVariable(name = "id") Integer id) {
+    public DtoAssignment receiveAssignment(@RequestBody DtoAssignmentReceiveIU receiveAssignment, @PathVariable(name = "id") Integer id) {
         return assignmentService.receiveAssignment(receiveAssignment, id);
     }
 

@@ -6,13 +6,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
-public interface InventoryRepository extends JpaRepository<Inventory,Integer> {
+public interface InventoryRepository extends JpaRepository<Inventory, Integer> {
 
-    @Query(nativeQuery = true, value = "SELECT * FROM hrapp.inventory WHERE status != 'ASSIGNED'" )
+    @Query("SELECT i FROM Inventory i WHERE i.status != 'ASSIGNED'")
     List<Inventory> notAssigned();
-
-    Optional<Object> findById(Long id);
 }

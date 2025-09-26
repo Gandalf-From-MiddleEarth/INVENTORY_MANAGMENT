@@ -11,17 +11,9 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class DtoAssignmentIU {
-
-    private LocalDate assignmentDate;
+public class  DtoAssignmentReceiveIU {
 
     private LocalDate returnDate;
-
-    private Integer employeeId;
-
-    private Integer inventoryId;
-
-    private Integer assigner;
 
     private Integer receiver;
 }
