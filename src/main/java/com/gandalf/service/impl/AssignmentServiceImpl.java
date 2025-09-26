@@ -1,7 +1,8 @@
 package com.gandalf.service.impl;
 
 import com.gandalf.dto.DtoAssignment;
-import com.gandalf.dto.DtoAssignmentIU;
+import com.gandalf.dto.DtoAssignmentCreateIU;
+import com.gandalf.dto.DtoAssignmentReceiveIU;
 import com.gandalf.entities.Employee;
 import com.gandalf.entities.Inventory;
 import com.gandalf.entities.InventoryAssignment;
@@ -29,9 +30,7 @@ public class AssignmentServiceImpl implements IAssignmentService {
 
 
     @Override
-    public DtoAssignment createAssignment(DtoAssignmentIU assignment) {
-
-        //Note :: Need to change:: DtoAssignmentService spilite to two different Dtos
+    public DtoAssignment createAssignment(DtoAssignmentCreateIU assignment) {
 
         if (assignment != null) {
             Employee assigner = employeeRepository.findById(assignment.getAssigner())
@@ -74,22 +73,29 @@ public class AssignmentServiceImpl implements IAssignmentService {
     }
 
     @Override
-    public DtoAssignment receiveAssignment(DtoAssignmentIU receiveAssignment, Integer id) {
+    public DtoAssignment receiveAssignment(DtoAssignmentReceiveIU receiveAssignment, Integer id) {
         InventoryAssignment assignment = assignmentRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Assignment not found"));
 
-        Employee receiver = new Employee();
-        receiver.setId(receiveAssignment.getReceiver());
+        Employee receiver = employeeRepository.findById(receiveAssignment.getReceiver())
+                .orElseThrow(() -> new RuntimeException("Employee not found"));
         assignment.setReceiver(receiver);
-        assignment.setReturnDate(LocalDate.now());
-        Inventory inventory = (Inventory) inventoryRepository.findById(id).orElseThrow();
+
+        assignment.setReturnDate(receiveAssignment.getReturnDate() != null
+                ? receiveAssignment.getReturnDate() : LocalDate.now());
+
+        Inventory inventory = assignment.getInventory(); // Assuming Assignment has inventory reference
         inventory.setStatus(InventoryStatus.IN_OFFICE);
         inventoryRepository.save(inventory);
+
         assignmentRepository.save(assignment);
+
         DtoAssignment dtoAssignment = new DtoAssignment();
-        BeanUtils.copyProperties(assignment,dtoAssignment);
+        BeanUtils.copyProperties(assignment, dtoAssignment);
+
         return dtoAssignment;
     }
+
 
 }
 
